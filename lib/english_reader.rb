@@ -12,7 +12,7 @@ class EnglishReader
   def character_count
     lines = File.readlines(@file1)
     text = lines.join
-    text.delete("\n").length
+    text.chomp.length
   end
 
   def info_msg
@@ -25,7 +25,7 @@ class EnglishReader
 
   def write
     f2 = File.open(@file2, "w")
-    f2.write(lines[0].delete("\n"))
+    f2.write(lines[0].chomp)
     f2.close
   end
 
