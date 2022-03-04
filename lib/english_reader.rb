@@ -1,4 +1,7 @@
+require_relative 'translator'
+
 class EnglishReader
+  include Translator
   attr_reader :file1, :file2
 
   def initialize(file1, file2)

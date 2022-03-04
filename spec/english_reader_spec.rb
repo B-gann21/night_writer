@@ -3,6 +3,8 @@ require './lib/english_reader'
 
 describe EnglishReader do
   before :each do
+    @string1 = 'aaaaaaaaaaaaaaa'
+    @string2 = 'bbbbbbbbbbbbbbb'
     @file1 = 'message_test.txt'
     @file2 = 'braille_test.txt'
     @file3 = 'message_test_2.txt'
@@ -73,7 +75,7 @@ describe EnglishReader do
         ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
         ['O', '.', '.', '.', '.', '.' ]
       ]
-      actual = @translator.translate_english(@string1)
+      actual = @e_reader.translate_english(@string1)
 
       expect(actual).to eq(expected)
 
@@ -90,7 +92,7 @@ describe EnglishReader do
         ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
         ['O', '.', 'O', '.', '.', '.' ]
       ]
-      actual = @translator.translate_english(@string2)
+      actual = @e_reader.translate_english(@string2)
 
       expect(actual).to eq(expected)
     end

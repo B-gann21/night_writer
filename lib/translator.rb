@@ -1,6 +1,6 @@
-class Translator
-  def initialize
-    @eng_to_braille = {
+module Translator
+  def eng_to_braille
+    {
       a: ['O', '.', '.', '.', '.', '.'],  b: ['O', '.', 'O', '.', '.', '.'],
       c: ['O', 'O', '.', '.', '.', '.'],  d: ['O', 'O', '.', 'O', '.', '.'],
       e: ['O', '.', '.', 'O', '.', '.'],  f: ['O', 'O', 'O', '.', '.', '.'],
@@ -19,6 +19,6 @@ class Translator
   end
 
   def translate_english(string)
-    string.split('').map{|character| @eng_to_braille[character.to_sym]}
+    string.split('').map{|character| eng_to_braille[character.to_sym]}
   end
 end
