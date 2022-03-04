@@ -13,17 +13,19 @@ describe EnglishReader do
       expect(@e_reader).to be_a(EnglishReader)
     end
 
+
     it 'can print an info message' do
       expected = "Created 'braille_test.txt' containing 15 characters"
       expect(@e_reader.info_msg).to eq(expected)
+      expect(@e_reader.character_count).to eq(15)
     end
   end
 
   context 'reading/writing files' do
-    it 'can read from a file and write to another' do
-      @e_reader.translate(@file1)
-
-      expect(File.readlines(@file2)).to eq("aaaaaaaaaaaaaaa")
+    it '#translate can read from a file and write to another' do
+      @e_reader.translate(@file1, @file2)
+      new_file = File.readlines(@file2)
+      expect(new_file[0]).to eq("aaaaaaaaaaaaaaa")
     end
   end
 
