@@ -19,7 +19,6 @@ describe EnglishReader do
     it '#info_msg can print an info message' do
       expected = "Created 'braille_test.txt' containing 15 characters"
       expect(@e_reader.info_msg).to eq(expected)
-      expect(@e_reader.character_count).to eq(15)
     end
   end
 
@@ -47,5 +46,19 @@ describe EnglishReader do
     end
   end
 
+  context 'grabbing, counting, and converting characters' do
+    it '#character_count can count all characters' do
+      expect(@e_reader.character_count).to eq(15)
+    end
+
+    it '#get_characters returns an array of characters' do
+      expected = [
+        'a', 'a', 'a', 'a', 'a',
+        'a', 'a', 'a', 'a', 'a',
+        'a', 'a', 'a', 'a', 'a'
+      ]
+      expect(@e_reader.get_characters).to eq(expected)
+    end
+  end
 
 end
