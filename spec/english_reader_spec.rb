@@ -5,6 +5,8 @@ describe EnglishReader do
   before :each do
     @file1 = 'message_test.txt'
     @file2 = 'braille_test.txt'
+    @file3 = 'message_test_2.txt'
+    @file4 = 'braille_test_2.txt'
     @e_reader = EnglishReader.new(@file1, @file2)
   end
 
@@ -25,6 +27,21 @@ describe EnglishReader do
     it 'EnglishReader #lines shows the lines in message.txt' do
       expected_lines = File.readlines(@file1)
       expect(@e_reader.lines).to eq(expected_lines)
+    end
+
+    it 'EnglishReader #write can write to a given file' do
+      first_expected = File.readlines(@file1)
+      @e_reader.write
+      first_actual = File.readlines(@file2)
+
+      expect(first_actual).to eq(first_expected)
+
+      @e_reader_2 = EnglishReader.new(@file3, @file4)
+      second_expected_lines = File.readlines(@file3)
+      @e_reader_2.write
+      second_actual = File.readlines(@file4)
+
+      expect(second_actual).to eq(second_expected)
     end
 
     it '#translate can read from a file and write to another' do
