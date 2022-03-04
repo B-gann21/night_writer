@@ -1,16 +1,20 @@
 require 'rspec'
-require './lib/night_writer'
+require './lib/english_reader'
 
-describe NightWriter do
+describe EnglishReader do
   before :each do
     @file1 = 'message.txt'
     @file2 = 'braille.txt'
-    @writer = NightWriter.new(@file1, @file2)
+    @e_reader = EnglishReader.new(@file1, @file2)
   end
 
   context 'initialization' do
     it 'exists' do
-      expect(@writer).to be_a(NightWriter)
+      expect(@e_reader).to be_a(EnglishReader)
+    end
+
+    it 'prints a welcome message' do
+
     end
   end
 end
