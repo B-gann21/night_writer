@@ -3,6 +3,8 @@ require './lib/english_reader'
 
 describe EnglishReader do
   before :each do
+    @string1 = 'aaaaaaaaaaaaaaa'
+    @string2 = 'bbbbbbbbbbbbbbb'
     @file1 = 'message_test.txt'
     @file2 = 'braille_test.txt'
     @file3 = 'message_test_2.txt'
@@ -58,6 +60,41 @@ describe EnglishReader do
         'a', 'a', 'a', 'a', 'a'
       ]
       expect(@e_reader.get_characters).to eq(expected)
+    end
+  end
+
+  context 'translation' do
+    it '#translate_english converts english chars to braille' do
+      expected = [
+        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
+        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
+        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
+        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
+        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
+        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
+        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
+        ['O', '.', '.', '.', '.', '.' ]
+      ]
+      actual = @e_reader.translate_english(@string1)
+
+      expect(actual).to eq(expected)
+
+    end
+
+    it 'can translate different characters' do
+      expected = [
+        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
+        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
+        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
+        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
+        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
+        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
+        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
+        ['O', '.', 'O', '.', '.', '.' ]
+      ]
+      actual = @e_reader.translate_english(@string2)
+
+      expect(actual).to eq(expected)
     end
   end
 
