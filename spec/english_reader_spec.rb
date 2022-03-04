@@ -35,7 +35,9 @@ describe EnglishReader do
       first_actual = File.readlines(@file2)
 
       expect(first_actual[0]).to eq(first_expected)
+    end
 
+    it '#write can write to a different file' do
       @e_reader_2 = EnglishReader.new(@file3, @file4)
       second_expected = File.readlines(@file3)[0].delete("\n")
       @e_reader_2.write
