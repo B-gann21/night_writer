@@ -15,5 +15,10 @@ class Translator
       w: ['.', 'O', 'O', 'O', '.', 'O'],  x: ['O', 'O', '.', '.', 'O', 'O'],
       y: ['O', 'O', '.', 'O', 'O', 'O'],  z: ['O', '.', '.', 'O', 'O', 'O'],
     }
+    # @braille_to_eng = @eng_to_braille.invert
+  end
+
+  def translate_english(string)
+    string.split('').map{|character| @eng_to_braille[character.to_sym]}
   end
 end
