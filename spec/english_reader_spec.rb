@@ -30,18 +30,18 @@ describe EnglishReader do
     end
 
     it 'EnglishReader #write can write to a given file' do
-      first_expected = File.readlines(@file1)
+      first_expected = File.readlines(@file1)[0].delete("\n")
       @e_reader.write
       first_actual = File.readlines(@file2)
 
-      expect(first_actual).to eq(first_expected)
+      expect(first_actual[0]).to eq(first_expected)
 
       @e_reader_2 = EnglishReader.new(@file3, @file4)
-      second_expected_lines = File.readlines(@file3)
+      second_expected = File.readlines(@file3)[0].delete("\n")
       @e_reader_2.write
       second_actual = File.readlines(@file4)
 
-      expect(second_actual).to eq(second_expected)
+      expect(second_actual[0]).to eq(second_expected)
     end
 
     it '#translate can read from a file and write to another' do

@@ -29,4 +29,10 @@ class EnglishReader
     File.readlines(file1)
   end
 
+  def write
+    f2 = File.open(file2, "w")
+    f2.write(lines[0].delete("\n"))
+    f2.close
+  end
+
 end
