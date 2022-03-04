@@ -24,7 +24,7 @@ describe EnglishReader do
   context 'reading/writing files' do
     it 'EnglishReader #lines shows the lines in message.txt' do
       expected_lines = File.readlines(@file1)
-      expect(@e_reader.lines).to eq(expected_lines[0])
+      expect(@e_reader.lines).to eq(expected_lines)
     end
 
     it '#translate can read from a file and write to another' do
