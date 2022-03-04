@@ -3,8 +3,8 @@ require './lib/english_reader'
 
 describe EnglishReader do
   before :each do
-    @file1 = 'message.txt'
-    @file2 = 'braille.txt'
+    @file1 = 'message_test.txt'
+    @file2 = 'braille_test.txt'
     @e_reader = EnglishReader.new(@file1, @file2)
   end
 
@@ -14,7 +14,7 @@ describe EnglishReader do
     end
 
     it 'prints a welcome message' do
-      expected = "Created 'braille.txt' containing 15 characters"
+      expected = "Created 'braille_test.txt' containing 15 characters"
       expect(@e_reader.info_msg).to eq(expected)
     end
   end
