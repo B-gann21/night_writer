@@ -19,7 +19,6 @@ describe EnglishReader do
     it '#info_msg can print an info message' do
       expected = "Created 'braille_test.txt' containing 15 characters"
       expect(@e_reader.info_msg).to eq(expected)
-      expect(@e_reader.character_count).to eq(15)
     end
   end
 
@@ -35,7 +34,9 @@ describe EnglishReader do
       first_actual = File.readlines(@file2)
 
       expect(first_actual[0]).to eq(first_expected)
+    end
 
+    it '#write can write to a different file' do
       @e_reader_2 = EnglishReader.new(@file3, @file4)
       second_expected = File.readlines(@file3)[0].delete("\n")
       @e_reader_2.write
@@ -45,5 +46,19 @@ describe EnglishReader do
     end
   end
 
+  context 'grabbing, counting, and converting characters' do
+    it '#character_count can count all characters' do
+      expect(@e_reader.character_count).to eq(15)
+    end
+
+    it '#get_characters returns an array of characters' do
+      expected = [
+        'a', 'a', 'a', 'a', 'a',
+        'a', 'a', 'a', 'a', 'a',
+        'a', 'a', 'a', 'a', 'a'
+      ]
+      expect(@e_reader.get_characters).to eq(expected)
+    end
+  end
 
 end

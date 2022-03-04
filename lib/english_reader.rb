@@ -10,9 +10,7 @@ class EnglishReader
   end
 
   def character_count
-    lines = File.readlines(@file1)
-    text = lines.join
-    text.chomp.length
+    get_characters.length
   end
 
   def info_msg
@@ -27,6 +25,10 @@ class EnglishReader
     f2 = File.open(@file2, "w")
     f2.write(lines[0].chomp)
     f2.close
+  end
+
+  def get_characters
+    lines.map {|line| line.chomp.split('')}.flatten
   end
 
 end
