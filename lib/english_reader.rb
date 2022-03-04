@@ -4,7 +4,6 @@ class EnglishReader
   def initialize(file1, file2)
     @file1 = file1
     @file2 = file2
-    lines
     write
     puts info_msg
   end

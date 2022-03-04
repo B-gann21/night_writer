@@ -46,7 +46,7 @@ describe EnglishReader do
     end
   end
 
-  context 'grabbing, counting, and converting characters' do
+  context 'grabbing and counting characters' do
     it '#character_count can count all characters' do
       expect(@e_reader.character_count).to eq(15)
     end
