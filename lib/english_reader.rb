@@ -10,9 +10,7 @@ class EnglishReader
   end
 
   def character_count
-    lines = File.readlines(@file1)
-    text = lines.join
-    text.chomp.length
+    get_characters.length
   end
 
   def info_msg
