@@ -43,12 +43,6 @@ describe EnglishReader do
 
       expect(second_actual[0]).to eq(second_expected)
     end
-
-    it '#translate can read from a file and write to another' do
-      @e_reader.translate(@file1, @file2)
-      new_file = File.readlines(@file2)
-      expect(new_file[0]).to eq("aaaaaaaaaaaaaaa")
-    end
   end
 
 

@@ -4,8 +4,9 @@ class EnglishReader
   def initialize(file1, file2)
     @file1 = file1
     @file2 = file2
+    lines
+    write
     puts info_msg
-    translate(@file1, @file2)
   end
 
   def character_count
@@ -18,17 +19,12 @@ class EnglishReader
     "Created '#{@file2}' containing #{character_count} characters"
   end
 
-  def translate(file1, file2)
-    lines
-    write
-  end
-
   def lines
-    File.readlines(file1)
+    File.readlines(@file1)
   end
 
   def write
-    f2 = File.open(file2, "w")
+    f2 = File.open(@file2, "w")
     f2.write(lines[0].delete("\n"))
     f2.close
   end
