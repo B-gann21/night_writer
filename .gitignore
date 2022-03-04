@@ -12,7 +12,7 @@
 /pseudocode.txt
 # Used by dotenv library to load environment variables.
 # .env
-
+/Gemfile
 # Ignore Byebug command history file.
 .byebug_history
 
