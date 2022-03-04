@@ -14,7 +14,8 @@ describe EnglishReader do
     end
 
     it 'prints a welcome message' do
-
+      expected = "Created 'braille.txt' containing 15 characters"
+      expect(@e_reader.info_msg).to eq(expected)
     end
   end
 end
