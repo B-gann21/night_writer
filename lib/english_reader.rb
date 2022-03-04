@@ -29,4 +29,8 @@ class EnglishReader
     f2.close
   end
 
+  def get_characters
+    lines.map {|line| line.chomp.split('')}.flatten
+  end
+
 end
