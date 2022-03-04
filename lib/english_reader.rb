@@ -19,10 +19,18 @@ class EnglishReader
   end
 
   def translate(file1, file2)
-    lines = File.readlines(file1)
-    writer = File.open(file2, "w")
-    writer.write(lines[0].delete("\n"))
-    writer.close
+    lines
+    write
+  end
+
+  def lines
+    File.readlines(file1)
+  end
+
+  def write
+    f2 = File.open(file2, "w")
+    f2.write(lines[0].delete("\n"))
+    f2.close
   end
 
 end
