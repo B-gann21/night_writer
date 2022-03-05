@@ -24,7 +24,9 @@ class EnglishReader
 
   def write_braille
     File.open(@file2, "w") do |file|
-      get_characters.map {|char| file.write(translate_english(char)[0].join)}
+      get_characters.map do |char|
+        file.write(translate_english(char).join)
+      end
     end
   end
 
