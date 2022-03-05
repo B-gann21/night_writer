@@ -91,7 +91,7 @@ describe EnglishReader do
     end
 
     it '#write_braille can translate a single letter to a given file' do
-      first_expected = ["O.", "..", '..']
+      first_expected = ["O.\n", "..\n", '..']
       @e_reader_2.write_braille
       first_actual = File.readlines(@file4)[0..3]
 

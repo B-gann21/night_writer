@@ -14,7 +14,7 @@ module Translator
       u: ['O.', '..', 'OO'],  v: ['O.', 'O.', 'OO'],
       w: ['.O', 'OO', '.O'],  x: ['OO', '..', 'OO'],
       y: ['OO', '.O', 'OO'],  z: ['O.', '.O', 'OO'],
-      " " => ['..', '..', '..']
+      " ": ['..', '..', '..']
     }
     # @braille_to_eng = @eng_to_braille.invert
   end
