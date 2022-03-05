@@ -5,10 +5,13 @@ describe EnglishReader do
   before :each do
     @string1 = 'aaaaaaaaaaaaaaa'
     @string2 = 'bbbbbbbbbbbbbbb'
-    @file1 = 'message_test.txt'
-    @file2 = 'braille_test.txt'
-    @file3 = 'message_test_2.txt'
-    @file4 = 'braille_test_2.txt'
+    @file1 = './spec/message_test.txt'
+    @file2 = './spec/braille_test.txt'
+    @file3 = './spec/message_test_2.txt'
+    @file4 = './spec/braille_test_2.txt'
+    @file5 = './spec/message_test_3.txt'
+    @file6 = './spec/braille_test_3.txt'
+
     @e_reader = EnglishReader.new(@file1, @file2)
   end
 
@@ -24,27 +27,10 @@ describe EnglishReader do
     end
   end
 
-  context 'reading/writing files' do
+  context 'reading files' do
     it 'EnglishReader #lines shows the lines in message.txt' do
       expected_lines = File.readlines(@file1)
       expect(@e_reader.lines).to eq(expected_lines)
-    end
-
-    it 'EnglishReader #write can write to a given file' do
-      first_expected = File.readlines(@file1)[0].delete("\n")
-      @e_reader.write
-      first_actual = File.readlines(@file2)
-
-      expect(first_actual[0]).to eq(first_expected)
-    end
-
-    it '#write can write to a different file' do
-      @e_reader_2 = EnglishReader.new(@file3, @file4)
-      second_expected = File.readlines(@file3)[0].delete("\n")
-      @e_reader_2.write
-      second_actual = File.readlines(@file4)
-
-      expect(second_actual[0]).to eq(second_expected)
     end
   end
 
@@ -66,14 +52,14 @@ describe EnglishReader do
   context 'translation' do
     it '#translate_english converts english chars to braille' do
       expected = [
-        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
-        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
-        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
-        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
-        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
-        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
-        ['O', '.', '.', '.', '.', '.' ], ['O', '.', '.', '.', '.', '.' ],
-        ['O', '.', '.', '.', '.', '.' ]
+        ['O.', '..', '..'], ['O.', '..', '..'],
+        ['O.', '..', '..'], ['O.', '..', '..'],
+        ['O.', '..', '..'], ['O.', '..', '..'],
+        ['O.', '..', '..'], ['O.', '..', '..'],
+        ['O.', '..', '..'], ['O.', '..', '..'],
+        ['O.', '..', '..'], ['O.', '..', '..'],
+        ['O.', '..', '..'], ['O.', '..', '..'],
+        ['O.', '..', '..']
       ]
       actual = @e_reader.translate_english(@string1)
 
@@ -83,18 +69,41 @@ describe EnglishReader do
 
     it 'can translate different characters' do
       expected = [
-        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
-        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
-        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
-        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
-        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
-        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
-        ['O', '.', 'O', '.', '.', '.' ], ['O', '.', 'O', '.', '.', '.' ],
-        ['O', '.', 'O', '.', '.', '.' ]
+        ['O.', 'O.', '..'], ['O.', 'O.', '..'],
+        ['O.', 'O.', '..'], ['O.', 'O.', '..'],
+        ['O.', 'O.', '..'], ['O.', 'O.', '..'],
+        ['O.', 'O.', '..'], ['O.', 'O.', '..'],
+        ['O.', 'O.', '..'], ['O.', 'O.', '..'],
+        ['O.', 'O.', '..'], ['O.', 'O.', '..'],
+        ['O.', 'O.', '..'], ['O.', 'O.', '..'],
+        ['O.', 'O.', '..']
       ]
       actual = @e_reader.translate_english(@string2)
 
       expect(actual).to eq(expected)
+    end
+  end
+
+  context 'writing in braille' do
+    before :each do
+      @e_reader_2 = EnglishReader.new(@file3, @file4)
+      @e_reader_3 = EnglishReader.new(@file5, @file6)
+    end
+
+    it '#write_braille can translate a single letter to a given file' do
+      first_expected = ["O.\n", "..\n", '..']
+      @e_reader_2.write_braille
+      first_actual = File.readlines(@file4)[0..3]
+
+      expect(first_actual).to eq(first_expected)
+    end
+
+    it '#write_braille can write multiple letters to a file' do
+      second_expected = ["O.O.O.O.O.\n", "..........\n", ".........."]
+      @e_reader_3.write_braille
+      second_actual = File.readlines(@file6)[0..3]
+
+      expect(second_actual).to eq(second_expected)
     end
   end
 
