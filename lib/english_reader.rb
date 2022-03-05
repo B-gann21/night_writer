@@ -7,8 +7,7 @@ class EnglishReader
   def initialize(file1, file2)
     @file1 = file1
     @file2 = file2
-    write
-    puts info_msg
+    write_braille
   end
 
   def character_count
@@ -16,17 +15,17 @@ class EnglishReader
   end
 
   def info_msg
-    "Created '#{@file2}' containing #{character_count} characters"
+    "Created '#{@file2.delete_prefix("./spec/")}' containing #{character_count} characters"
   end
 
   def lines
     File.readlines(@file1)
   end
 
-  def write
-    f2 = File.open(@file2, "w")
-    f2.write(lines[0].chomp)
-    f2.close
+  def write_braille
+    File.open(@file2, "w") do |file|
+      get_characters.map {|char| file.write(translate_english(char)[0].join)}
+    end
   end
 
   def get_characters
