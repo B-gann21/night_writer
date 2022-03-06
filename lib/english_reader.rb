@@ -24,7 +24,7 @@ class EnglishReader
 
   def write_braille
     File.open(@file2, "w") do |file|
-      file.write(create_rows)
+      file.write("#{rows[:row_1]}\n#{rows[:row_2]}\n#{rows[:row_3]}")
     end
   end
 
@@ -36,10 +36,11 @@ class EnglishReader
     get_characters.map {|char| translate_english(char)}.flatten(1)
   end
 
-  def create_rows
-    first_row = braille_arrays.map {|translation| translation[0]}.join
-    second_row = braille_arrays.map {|translation| translation[1]}.join
-    third_row = braille_arrays.map {|translation| translation[2]}.join
-    "#{first_row}\n#{second_row}\n#{third_row}"
+  def rows
+    {
+      row_1: braille_arrays.map {|translation| translation[0]}.join,
+      row_2: braille_arrays.map {|translation| translation[1]}.join,
+      row_3: braille_arrays.map {|translation| translation[2]}.join
+    }
   end
 end
