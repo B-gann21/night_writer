@@ -26,4 +26,8 @@ module Translator
   def translate_english(string)
     string.split('').map{|character| eng_to_braille[character.to_sym]}
   end
+
+  def translate_braille(character)
+    braille_to_eng[character].to_s
+  end
 end

@@ -30,6 +30,16 @@ describe BrailleReader do
     it 'can translate different characters' do
       actual = @b_reader.translate_braille(@braille_b)
 
+      expect(actual).to eq("b")
+    end
+  end
+
+  context 'writing in english' do
+    it '#write_english can write a single character in english' do
+      expected = 'a'
+      @b_reader.write_english
+      actual = File.readlines(@file1)
+
       expect(actual).to eq(expected)
     end
   end
