@@ -4,8 +4,8 @@ describe BrailleReader do
   before :each do
     @braille_a = ['O.', '..', '..']
     @braille_b = ['O.', 'O.', '..']
-    @file1 = './spec/message_test_2.txt'
-    @file2 = './spec/braille_test_2.txt'
+    @file1 = './spec/message_test_5.txt'
+    @file2 = './spec/braille_test_6.txt'
     @b_reader = BrailleReader.new(@file2, @file1)
   end
 
@@ -36,7 +36,7 @@ describe BrailleReader do
 
   context 'writing in english' do
     it '#write_english can write a single character in english' do
-      expected = 'a'
+      expected = "a\n"
       @b_reader.write_english
       actual = File.readlines(@file1)
 

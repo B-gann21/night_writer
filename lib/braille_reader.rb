@@ -25,4 +25,16 @@ class BrailleReader
     get_characters.length
   end
 
+  def write_english
+    File.open(@file2, "w") do |file|
+      file.write(translate_braille(format_braille))
+    end
+  end
+
+  def format_braille
+    braille_lines = File.readlines(@file1)
+    chomped_lines = braille_lines.map {|line| line.chomp}
+    chomped_lines.delete('')
+    chomped_lines
+  end
 end
