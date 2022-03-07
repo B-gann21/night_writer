@@ -19,6 +19,10 @@ module Translator
     # @braille_to_eng = @eng_to_braille.invert
   end
 
+  def braille_to_eng
+    eng_to_braille.invert
+  end
+
   def translate_english(string)
     string.split('').map{|character| eng_to_braille[character.to_sym]}
   end
