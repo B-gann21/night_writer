@@ -24,7 +24,11 @@ class EnglishReader
 
   def write_braille
     File.open(@file2, "w") do |file|
-      file.write("#{first_row}\n#{second_row}\n#{third_row}")
+      index = 0
+      formatted_rows[:row1].length.times do
+        file.write("#{formatted_rows[:row1][index]}\n#{formatted_rows[:row2][index]}\n#{formatted_rows[:row3][index]}\n\n")
+        index += 1
+      end
     end
   end
 
@@ -36,21 +40,24 @@ class EnglishReader
     get_characters.map {|char| translate_english(char)}.flatten(1)
   end
 
-  def first_row
-    first_dots = []
-    braille_arrays.each { |translation| first_dots << translation[0]}
-    first_dots.join
+  def rows
+    {
+      row_1: braille_arrays.map {|translation| translation[0]}.join,
+      row_2: braille_arrays.map {|translation| translation[1]}.join,
+      row_3: braille_arrays.map {|translation| translation[2]}.join
+    }
   end
 
-  def second_row
-    second_dots = []
-    braille_arrays.each { |translation| second_dots << translation[1]}
-    second_dots.join
-  end
-
-  def third_row
-    third_dots = []
-    braille_arrays.each { |translation| third_dots << translation[2]}
-    third_dots.join
+  def formatted_rows
+    new_rows = {
+      row1: [],
+      row2: [],
+      row3: []
+    }
+    new_rows[:row1] << rows[:row_1].chars.each_slice(80).map {|chars| chars.join}
+    new_rows[:row2] << rows[:row_2].chars.each_slice(80).map {|chars| chars.join}
+    new_rows[:row3] << rows[:row_3].chars.each_slice(80).map {|chars| chars.join}
+    new_rows.each {|row, chars| chars.flatten!}
+    new_rows
   end
 end
