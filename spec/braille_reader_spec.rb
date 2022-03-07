@@ -14,7 +14,7 @@ describe BrailleReader do
 
     it 'can print an info message' do
       expected = 'Created message_test_2.txt containing 1 characters'
-      expect(@b_reader.info_message).to eq(expected)
+      expect(@b_reader.info_msg).to eq(expected)
     end
   end
 end
