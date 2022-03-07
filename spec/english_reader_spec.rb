@@ -91,7 +91,7 @@ describe EnglishReader do
     end
 
     it '#write_braille can translate a single letter to a given file' do
-      first_expected = ["O.\n", "..\n", '..']
+      first_expected = ["O.\n", "..\n", "..\n", "\n"]
       @e_reader_2.write_braille
       first_actual = File.readlines(@file4)[0..3]
 
@@ -99,7 +99,7 @@ describe EnglishReader do
     end
 
     it '#write_braille can write multiple letters to a file' do
-      second_expected = ["O.O.O.O.O.\n", "..........\n", ".........."]
+      second_expected = ["O.O.O.O.O.\n", "..........\n", "..........\n", "\n"]
       @e_reader_3.write_braille
       second_actual = File.readlines(@file6)[0..3]
 
@@ -115,9 +115,11 @@ describe EnglishReader do
         "O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.\n",
         "................................................................................\n",
         "................................................................................\n",
+        "\n",
         "O.\n",
         "..\n",
-        ".."
+        "..\n",
+        "\n"
       ]
       @e_reader4.write_braille
       actual = File.readlines(@file8)

@@ -24,7 +24,11 @@ class EnglishReader
 
   def write_braille
     File.open(@file2, "w") do |file|
-      file.write("#{rows[:row_1]}\n#{rows[:row_2]}\n#{rows[:row_3]}")
+      index = 0
+      formatted_rows[:row1].length.times do
+        file.write("#{formatted_rows[:row1][index]}\n#{formatted_rows[:row2][index]}\n#{formatted_rows[:row3][index]}\n\n")
+        index += 1
+      end
     end
   end
 
@@ -42,5 +46,18 @@ class EnglishReader
       row_2: braille_arrays.map {|translation| translation[1]}.join,
       row_3: braille_arrays.map {|translation| translation[2]}.join
     }
+  end
+
+  def formatted_rows
+    new_rows = {
+      row1: [],
+      row2: [],
+      row3: []
+    }
+    new_rows[:row1] << rows[:row_1].chars.each_slice(80).map {|chars| chars.join}
+    new_rows[:row2] << rows[:row_2].chars.each_slice(80).map {|chars| chars.join}
+    new_rows[:row3] << rows[:row_3].chars.each_slice(80).map {|chars| chars.join}
+    new_rows.each {|row, chars| chars.flatten!}
+    new_rows
   end
 end
