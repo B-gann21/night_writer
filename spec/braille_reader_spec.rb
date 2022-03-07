@@ -5,7 +5,7 @@ describe BrailleReader do
     @braille_a = ['O.', '..', '..']
     @braille_b = ['O.', 'O.', '..']
     @file1 = './spec/message_test_5.txt'
-    @file2 = './spec/braille_test_6.txt'
+    @file2 = './spec/braille_test_5.txt'
     @b_reader = BrailleReader.new(@file2, @file1)
   end
 
@@ -15,7 +15,7 @@ describe BrailleReader do
     end
 
     it 'can print an info message' do
-      expected = 'Created message_test_2.txt containing 1 characters'
+      expected = 'Created message_test_5.txt containing 1 characters'
       expect(@b_reader.info_msg).to eq(expected)
     end
   end
@@ -36,9 +36,21 @@ describe BrailleReader do
 
   context 'writing in english' do
     it '#write_english can write a single character in english' do
-      expected = "a\n"
+      expected = ["a"]
       @b_reader.write_english
       actual = File.readlines(@file1)
+
+      expect(actual).to eq(expected)
+    end
+
+    it 'can write more than one character' do
+      @file3 = './spec/braille_test_6.txt'
+      @file4 = './spec/message_test_6.txt'
+      @b_reader2 = BrailleReader.new(@file3, @file4)
+
+      expected = ["aaaaa"]
+      @b_reader2.write_english
+      actual = File.readlines(@file4)
 
       expect(actual).to eq(expected)
     end

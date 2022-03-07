@@ -17,6 +17,10 @@ class BrailleReader
     File.readlines(@file2)
   end
 
+  def braille_lines
+    File.readlines(@file1)
+  end
+
   def get_characters
     lines.map {|line| line.chomp.split('')}.flatten
   end
@@ -32,9 +36,9 @@ class BrailleReader
   end
 
   def format_braille
-    braille_lines = File.readlines(@file1)
     chomped_lines = braille_lines.map {|line| line.chomp}
     chomped_lines.delete('')
     chomped_lines
   end
+
 end
