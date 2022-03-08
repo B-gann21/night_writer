@@ -5,8 +5,8 @@ describe EnglishReader do
   before :each do
     @string1 = 'aaaaaaaaaaaaaaa'
     @string2 = 'bbbbbbbbbbbbbbb'
-    @file1 = './spec/message_test.txt'
-    @file2 = './spec/braille_test.txt'
+    @file1 = './spec/test_files/message_test.txt'
+    @file2 = './spec/test_files/braille_test.txt'
 
     @e_reader = EnglishReader.new(@file1, @file2)
   end
@@ -82,10 +82,10 @@ describe EnglishReader do
 
   context 'writing in braille' do
     before :each do
-      @file3 = './spec/message_test_2.txt'
-      @file4 = './spec/braille_test_2.txt'
-      @file5 = './spec/message_test_3.txt'
-      @file6 = './spec/braille_test_3.txt'
+      @file3 = './spec/test_files/message_test_2.txt'
+      @file4 = './spec/test_files/braille_test_2.txt'
+      @file5 = './spec/test_files/message_test_3.txt'
+      @file6 = './spec/test_files/braille_test_3.txt'
       @e_reader_2 = EnglishReader.new(@file3, @file4)
       @e_reader_3 = EnglishReader.new(@file5, @file6)
     end
@@ -107,8 +107,8 @@ describe EnglishReader do
     end
 
     it 'creates a new line at 40 chars' do
-      @file7 = './spec/message_test_4.txt'
-      @file8 = './spec/braille_test_4.txt'
+      @file7 = './spec/test_files/message_test_4.txt'
+      @file8 = './spec/test_files/braille_test_4.txt'
       @e_reader4 = EnglishReader.new(@file7, @file8)
 
       expected = [

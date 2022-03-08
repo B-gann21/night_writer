@@ -4,8 +4,8 @@ describe BrailleReader do
   before :each do
     @braille_a = ['O.', '..', '..']
     @braille_b = ['O.', 'O.', '..']
-    @file1 = './spec/message_test_5.txt'
-    @file2 = './spec/braille_test_5.txt'
+    @file1 = './spec/test_files/message_test_5.txt'
+    @file2 = './spec/test_files/braille_test_5.txt'
     @b_reader = BrailleReader.new(@file2, @file1)
   end
 
@@ -44,13 +44,25 @@ describe BrailleReader do
     end
 
     it 'can write more than one character' do
-      @file3 = './spec/braille_test_6.txt'
-      @file4 = './spec/message_test_6.txt'
+      @file3 = './spec/test_files/braille_test_6.txt'
+      @file4 = './spec/test_files/message_test_6.txt'
       @b_reader2 = BrailleReader.new(@file3, @file4)
 
       expected = ["aaaaa"]
       @b_reader2.write_english
       actual = File.readlines(@file4)
+
+      expect(actual).to eq(expected)
+    end
+
+    it 'can write multiple different characters' do
+      @file5 = './spec/test_files/braille_test_7.txt'
+      @file6 = './spec/test_files/message_test_7.txt'
+      @b_reader3 = BrailleReader.new(@file5, @file6)
+
+      expected = ['abcdefghijklmnopqrstuvwxyz']
+      @b_reader3.write_english
+      actual = File.readlines(@file6)
 
       expect(actual).to eq(expected)
     end

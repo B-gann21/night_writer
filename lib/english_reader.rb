@@ -15,7 +15,7 @@ class EnglishReader
   end
 
   def info_msg
-    "Created '#{@file2.delete_prefix("./spec/")}' containing #{character_count} characters"
+    "Created '#{@file2.delete_prefix("./spec/test_files/")}' containing #{character_count} characters"
   end
 
   def lines
