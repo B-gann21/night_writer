@@ -7,7 +7,6 @@ class EnglishReader
   def initialize(file1, file2)
     @file1 = file1
     @file2 = file2
-    write_braille
   end
 
   def character_count
