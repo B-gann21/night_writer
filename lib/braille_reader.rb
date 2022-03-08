@@ -62,10 +62,7 @@ class BrailleReader
         to_be_translated << section_holder
       end
     else
-      section_holder = []
-      chars.each do |section|
-        section_holder << section.join
-      end
+      section_holder = chars.map {|section| section.join}
       to_be_translated << section_holder
     end
     to_be_translated
