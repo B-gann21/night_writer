@@ -15,7 +15,7 @@ describe BrailleReader do
     end
 
     it 'can print an info message' do
-      expected = 'Created message_test_5.txt containing 1 characters'
+      expected = 'Created ./spec/test_files/message_test_5.txt containing 1 characters'
       expect(@b_reader.info_msg).to eq(expected)
     end
   end
@@ -46,7 +46,13 @@ describe BrailleReader do
     end
 
     it 'can format multiple braille characters' do
-      expected = [['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..']]
+      expected = [
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..']
+                 ]
       eng_file2 = './spec/test_files/message_test_3.txt'
       braille_file2 = './spec/test_files/braille_test_3.txt'
       b_reader2 = BrailleReader.new(braille_file2, eng_file2)

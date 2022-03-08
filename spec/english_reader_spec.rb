@@ -18,7 +18,7 @@ describe EnglishReader do
 
 
     it '#info_msg can print an info message' do
-      expected = "Created 'braille_test.txt' containing 15 characters"
+      expected = "Created './spec/test_files/braille_test.txt' containing 15 characters"
       expect(@e_reader.info_msg).to eq(expected)
     end
   end

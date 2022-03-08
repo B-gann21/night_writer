@@ -14,7 +14,7 @@ class EnglishReader
   end
 
   def info_msg
-    "Created '#{@file2.delete_prefix("./spec/test_files/")}' containing #{character_count} characters"
+    "Created '#{@file2}' containing #{character_count} characters"
   end
 
   def lines
@@ -24,15 +24,15 @@ class EnglishReader
   def write_braille
     File.open(@file2, "w") do |file|
       index = 0
-      formatted_rows[:row1].length.times do
-        file.write("#{formatted_rows[:row1][index]}\n#{formatted_rows[:row2][index]}\n#{formatted_rows[:row3][index]}\n\n")
+      wrap_rows[:row1].length.times do
+        file.write("#{wrap_rows[:row1][index]}\n#{wrap_rows[:row2][index]}\n#{wrap_rows[:row3][index]}\n\n")
         index += 1
       end
     end
   end
 
   def get_characters
-    lines.map {|line| line.chomp.split('')}.flatten
+    lines.map {|line| line.chomp.chars}.flatten
   end
 
   def braille_arrays
@@ -47,7 +47,7 @@ class EnglishReader
     }
   end
 
-  def formatted_rows
+  def wrap_rows
     new_rows = {
       row1: [],
       row2: [],
