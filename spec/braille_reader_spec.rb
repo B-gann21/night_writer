@@ -46,7 +46,13 @@ describe BrailleReader do
     end
 
     it 'can format multiple braille characters' do
-      expected = [['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..']]
+      expected = [
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..'],
+                  ['O.', '..', '..']
+                 ]
       eng_file2 = './spec/test_files/message_test_3.txt'
       braille_file2 = './spec/test_files/braille_test_3.txt'
       b_reader2 = BrailleReader.new(braille_file2, eng_file2)
