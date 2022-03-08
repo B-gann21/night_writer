@@ -22,7 +22,7 @@ class BrailleReader
   end
 
   def get_characters
-    lines.map {|line| line.chomp.split('')}.flatten
+    lines.map {|line| line.chomp.chars}.flatten
   end
 
   def get_braille_chars
@@ -55,9 +55,7 @@ class BrailleReader
         section_holder = []
         chars.each do |row|
           section_holder << row[0..1].join
-          2.times do
-            row.delete_at(0)
-          end
+          2.times {row.delete_at(0)}
         end
         to_be_translated << section_holder
       end
@@ -67,5 +65,4 @@ class BrailleReader
     end
     to_be_translated
   end
-
 end
