@@ -126,6 +126,31 @@ describe EnglishReader do
 
       expect(actual).to eq(expected)
     end
+
+    it 'can create a new line every 40 characters' do
+      @file9 = './spec/test_files/message_test_8.txt'
+      @file10 = './spec/test_files/braille_test_8.txt'
+      @e_reader5 = EnglishReader.new(@file9, @file10)
+
+      expected = [
+        "O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.\n",
+        "................................................................................\n",
+        "................................................................................\n",
+        "\n",
+        "O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.O.\n",
+        "................................................................................\n",
+        "................................................................................\n",
+        "\n",
+        "O.\n",
+        "..\n",
+        "..\n",
+        "\n"
+      ]
+      @e_reader5.write_braille
+      actual = File.readlines(@file10)
+
+      expect(actual).to eq(expected)
+    end
   end
 
 end
