@@ -37,12 +37,21 @@ describe BrailleReader do
   context '#formatted_braille' do
     it 'can split a braille character into an array' do
       expected = ['O.', '..', '..']
-      eng_file = './spec/test_files/message_test_5.txt'
-      braille_file = './spec/test_files/braille_test_5.txt'
-      braille = File.readlines(braille_file)
-      b_reader = BrailleReader.new(braille_file, eng_file)
+      eng_file1 = './spec/test_files/message_test_5.txt'
+      braille_file1 = './spec/test_files/braille_test_5.txt'
+      braille = File.readlines(braille_file1)
+      b_reader1 = BrailleReader.new(braille_file1, eng_file1)
 
-      expect(b_reader.formatted_braille[0]).to eq(expected)
+      expect(b_reader1.formatted_braille[0]).to eq(expected)
+    end
+
+    it 'can format multiple braille characters' do
+      expected = [['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..'], ['O.', '..', '..']]
+      eng_file2 = './spec/test_files/message_test_3.txt'
+      braille_file2 = './spec/test_files/braille_test_3.txt'
+      b_reader2 = BrailleReader.new(braille_file2, eng_file2)
+
+      expect(b_reader2.formatted_braille).to eq(expected)
     end
   end
 
