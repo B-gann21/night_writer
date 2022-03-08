@@ -34,6 +34,18 @@ describe BrailleReader do
     end
   end
 
+  context '#formatted_braille' do
+    it 'can split a braille character into an array' do
+      expected = ['O.', '..', '..']
+      eng_file = './spec/test_files/message_test_5.txt'
+      braille_file = './spec/test_files/braille_test_5.txt'
+      braille = File.readlines(braille_file)
+      b_reader = BrailleReader.new(braille_file, eng_file)
+
+      expect(b_reader.formatted_braille[0]).to eq(expected)
+    end
+  end
+
   context 'writing in english' do
     it '#write_english can write a single character in english' do
       expected = ["a"]
