@@ -1,4 +1,4 @@
-require_realtive 'braille_reader'
+require_relative 'braille_reader'
 
 b_reader = BrailleReader.new(ARGV[0], ARGV[1])
 
