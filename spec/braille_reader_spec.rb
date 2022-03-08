@@ -15,7 +15,7 @@ describe BrailleReader do
     end
 
     it 'can print an info message' do
-      expected = 'Created message_test_5.txt containing 1 characters'
+      expected = 'Created ./spec/test_files/message_test_5.txt containing 1 characters'
       expect(@b_reader.info_msg).to eq(expected)
     end
   end
