@@ -54,5 +54,17 @@ describe BrailleReader do
 
       expect(actual).to eq(expected)
     end
+
+    it 'can write multiple different characters' do
+      @file5 = './spec/braille_test_7.txt'
+      @file6 = './spec/message_test_7.txt'
+      @b_reader3 = BrailleReader.new(@file5, @file6)
+
+      expected = ['abcdefghijklmnopqrstuvwxyz']
+      @b_reader3.write_english
+      actual = File.readlines(@file6)
+
+      expect(actual).to eq(expected)
+    end
   end
 end
